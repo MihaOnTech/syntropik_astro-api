@@ -1,0 +1,12 @@
+# Entorno virtual
+venv/
+
+# Archivos Python compilados
+__pycache__/
+*.py[cod]
+
+# Archivos de metadatos de paquetes
+*.egg-info/
+
+# Archivos del sistema
+.DS_Store
