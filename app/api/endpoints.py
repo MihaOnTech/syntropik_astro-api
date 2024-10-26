@@ -1,11 +1,21 @@
 from fastapi import APIRouter, HTTPException
 from app.models.schemas import BirthData, AstrologyData
 from app.services.geocoding_service import get_coordinates
+from app.services.nominatim_service import NominatimGeocodingService
+from app.services.google_maps_service import GoogleMapsGeocodingService
 from app.services.timezone_service import get_timezone
 from app.services.astrology_service import AstrologyCalculator
 from datetime import datetime
 
 router = APIRouter()
+
+# Instanciar el servicio de geocodificación
+
+# Usar Nominatim
+geocoding_service = NominatimGeocodingService()
+
+# Usar Google Maps (descomenta y proporciona tu API Key)
+# geocoding_service = GoogleMapsGeocodingService(api_key="TU_API_KEY")
 
 @router.post("/calculate", response_model=AstrologyData)
 async def calculate_astrology(data: BirthData):
@@ -36,7 +46,7 @@ async def calculate_astrology(data: BirthData):
             location=data.location or f"{lat}, {lon}",
             planets=planets,
             houses=houses,
-            aspects=aspects
+            aspects=aspects,
         )
 
         return result

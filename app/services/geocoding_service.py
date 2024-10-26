@@ -1,9 +1,6 @@
-from geopy.geocoders import Nominatim
+from abc import ABC, abstractmethod
 
-def get_coordinates(location_name: str):
-    geolocator = Nominatim(user_agent="astro_api")
-    location = geolocator.geocode(location_name)
-    if location:
-        return location.latitude, location.longitude
-    else:
-        raise ValueError(f"Ubicación '{location_name}' no encontrada")
+class GeocodingService(ABC):
+    @abstractmethod
+    def get_coordinates(self, location_name: str):
+        pass

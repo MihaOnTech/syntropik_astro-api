@@ -1,0 +1,6 @@
+- Mirar alternativas a swiss ephe (Skyfield + Flatlib)
+- Mirar alternativas a Nominatim o GoogleMaps API
+- Mirar gestion repostitorio
+- Implementar Redis para memoria cache de peticiones de geolocalizcion
+- Implementar dotenv para variables de entrono como APIs
+- Pasar el cambio de servicios de geolocalizacion a una variable de entorno

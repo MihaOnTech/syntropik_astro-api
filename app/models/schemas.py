@@ -1,5 +1,6 @@
 """
-Este módulo define los modelos de datos utilizados para las entradas y salidas de la API astrológica.
+Este módulo define los modelos de datos utilizados 
+para las entradas y salidas de la API astrológica.
 """
 
 from pydantic import BaseModel, Field, field_validator, model_validator
@@ -55,7 +56,9 @@ class BirthData(BaseModel):
 
     @model_validator(mode="after")
     def check_location_or_coordinates(cls, values):
-        if not values.location and (values.latitude is None or values.longitude is None):
+        if not values.location and (
+            values.latitude is None or values.longitude is None
+        ):
             raise ValueError("Debe proporcionar 'location' o 'latitude' y 'longitude'")
         return values
 
@@ -76,9 +79,7 @@ class Planet(BaseModel):
     position: float = Field(
         ..., description="Posición eclíptica en grados (0° a 360°)", example=316.30
     )
-    house: int = Field(
-        ..., description="Número de la casa (1-12)", example=3
-    )
+    house: int = Field(..., description="Número de la casa (1-12)", example=3)
 
     @field_validator("sign_degrees")
     def validate_sign_degrees(cls, v):
